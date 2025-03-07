@@ -1,0 +1,1155 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    color: #fbff95;
+    background-color: #070a1a;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #070a1a;
+    padding: 0px 50px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+}
+
+#logo {
+    display: flex;
+    align-items: center;
+}
+
+#logo-img {
+    height: 60px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+/* Estilo de las opciones del menú */
+.divisiones {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+
+/* Estilos para el menú de hamburguesa */
+.hamburger-menu {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.bar {
+    width: 25px;
+    height: 4px;
+    background-color: #fff;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: flex; /* Mostrar el ícono de hamburguesa */
+    }
+
+    /* El menú de navegación por defecto está oculto */
+    .divisiones {
+        display: none;
+    }
+    /* El menú se posiciona debajo del header cuando es visible */
+    .divisiones.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Empieza justo debajo del header */
+        left: 0;
+        background-color: #070a1a;
+        width: 100%;
+        height: auto; /* Ajusta la altura automáticamente según el contenido */
+        padding: 20px 0;
+        border-radius: 5px;
+        transform: translateY(0); /* Deslizar hacia abajo */
+        transition: all 0.3s ease-in-out; /* Suaviza el deslizamiento */
+    }
+
+    .nav-item {
+        margin: 10px 0; /* Ajusta los márgenes para mejorar la estética */
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+    }
+
+    .nav-link {
+        transition: color 0.3s;
+    }
+
+    .nav-item:hover {
+        color: #f1f1f1;
+    }
+}
+
+h1{
+    color: rgb(255, 255, 255)
+}
+.nav-item {
+    margin-left: 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+    color: #95f8ff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilos para el contenedor del hero */
+#contenedor {
+    max-width: 100%;
+    overflow: hidden;
+}
+
+/* Estilos para la imagen principal */
+#hero-image {
+    position: relative;
+    width: 100%;
+    height: 1000px; /* Aumenta la altura de la imagen */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+/* Capa oscura */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Contenedor del texto, alineado a la izquierda */
+.text-container {
+    position: absolute;
+    top: 50%;
+    left: 10%; /* Alineamos el texto a la izquierda */
+    transform: translateY(-90%); /* Solo centramos verticalmente */
+    z-index: 2;
+    text-align: left; /* Alineamos el texto a la izquierda */
+    color: white;
+    width: 80%; /* Asegura que el texto no exceda el contenedor */
+}
+
+/* Estilos del texto */
+.main-title {
+    font-size: 60px;
+    font-weight: bold;
+    margin-bottom: 10px; /* Aumentamos el espacio entre el título y subtítulo */
+}
+
+.sub-title {
+    font-size: 24px;
+    margin-top: 50px; /* Aumentamos el espacio entre el subtítulo y el botón */
+    margin-bottom: 50px;
+}
+
+.btn-more-info {
+    background-color: #00aaff; /* Botón azul claro */
+    color: #ffffff;
+    padding: 15px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-bottom: 20px; /* Espacio extra debajo del botón, opcional */
+}
+
+.btn-more-info:hover {
+    background-color: #008ecc;
+}
+
+/* Asegurar que la imagen y el texto sean responsive */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 36px;
+    }
+
+    .sub-title {
+        font-size: 16px;
+    }
+
+    .btn-more-info {
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+
+    .text-container {
+        left: 5%; /* Aseguramos que el texto también esté alineado correctamente en pantallas pequeñas */
+        width: 90%;
+    }
+}
+
+
+
+/* Estilos para la sección "Acerca de" */
+#acerca_de {
+    padding: 50px 0;
+    background-color: #070a1a; /* Fondo claro */
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centra el contenido verticalmente */
+    flex-wrap: wrap;
+    max-width: 1200px; /* Máximo ancho del contenedor */
+    margin: 0 auto; /* Centramos el contenedor */
+    padding: 20px 20px; /* Añadimos padding para tener espacio arriba y abajo */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 70px; /* Asegúrate de que coincida con la altura del header */
+}
+
+.container_listo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Centra el contenido verticalmente */
+    flex-wrap: wrap;
+    max-width: 1200px; /* Máximo ancho del contenedor */
+    margin: 0 auto; /* Centramos el contenedor */
+    padding: 20px 20px; /* Añadimos padding para tener espacio arriba y abajo */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.col {
+    flex-basis: 48%; /* Cada columna ocupa el 48% del ancho del contenedor */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra verticalmente el contenido en la columna */
+}
+
+
+.izquierda h2 {
+    font-size: 56px;
+    margin-bottom: 10px;
+    color:#fff;
+    padding: 20px 20px; /* Añadimos padding para tener espacio arriba y abajo */
+}
+
+.izquierda h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+    padding: 20px 20px; /* Añadimos padding para tener espacio arriba y abajo */
+    width: 50%;
+}
+
+.izquierda p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ffffff;
+    padding: 20px 20px; /* Añadimos padding para tener espacio arriba y abajo */
+}
+
+.derecha h2 {
+    font-size: 56px;
+    margin-bottom: 10px;
+    color:#fff;
+}
+
+.derecha h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.derecha p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #ffffff;
+}
+
+.derecha img {
+    width: 100%; /* La imagen ocupa el 100% del ancho de su contenedor */
+    height: auto; /* Mantiene la proporción */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+}
+
+.izquierda img {
+    width: 100%; /* La imagen ocupa el 100% del ancho de su contenedor */
+    height: auto; /* Mantiene la proporción */
+    border-radius: 8px; /* Bordes ligeramente redondeados */
+}
+
+/* Asegurarse de que sea responsive */
+@media (max-width: 768px) {
+    .col {
+        flex-basis: 100%; /* Las columnas ocupan el 100% en pantallas más pequeñas */
+        text-align: center; /* Centrar el contenido */
+    }
+
+    .derecha img {
+        margin-top: 20px; /* Añadir espacio superior entre el texto y la imagen en móviles */
+    }
+}
+
+
+
+#servicios h2 {
+    text-align: center; /* Centra el texto */
+    color: white; /* Cambia el color a blanco */
+    margin-bottom: 30px; /* Espacio debajo del título */
+}
+/* Contenedor de información */
+.info-cards {
+    display: flex;
+    transition: all 0.5s ease;
+    margin: 0 55px; /* Margen de 20px a los lados */
+    gap: 20px; /* Espacio entre cada tarjeta */
+}
+/* Cuadro de información */
+.info-card {
+    flex: 1;
+    transition: all 0.5s ease;
+    overflow: hidden;
+    padding: 20px;
+    color: #fff;
+    border-radius: 8px;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 500px;
+}
+
+/* Fondo oscuro al pasar el mouse */
+.info-card:hover .card-bg {
+    background-color: rgba(0, 0, 0, 0.5); /* Oscurecimiento */
+}
+
+/* Fondo de cada tarjeta */
+.card-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.2); /* Ligero oscurecimiento inicial */
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+/* Estilos del título */
+.card-content h3 {
+    font-size: 1.5em;
+    margin: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 1;
+}
+
+/* Ocultar la descripción inicialmente */
+.card-content p {
+    font-size: 1em;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Mostrar la descripción con animación al pasar el mouse */
+.info-card:hover .card-content p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mover el título hacia arriba al pasar el mouse */
+.info-card:hover .card-content {
+    transform: translateY(-20px);
+}
+
+/* Efecto de expansión al pasar el mouse */
+.info-card:hover {
+    flex: 2;
+}
+
+.info-card:not(:hover) {
+    flex: 0.75;
+}
+
+
+/* Responsive: En pantallas pequeñas, las tarjetas se apilan una encima de otra */
+@media (max-width: 768px) {
+    .info-cards {
+        display: flex;
+        flex-direction: column; /* Apilar verticalmente */
+        gap: 10px; /* Espacio entre tarjetas */
+    }
+
+    .info-card {
+        height: 300px; /* Ajustar altura inicial de las tarjetas */
+        flex: 1 1 auto; /* Permitir que las tarjetas se expandan o reduzcan */
+    }
+
+    /* Expansión vertical en hover */
+    .info-card:hover {
+        height: 500px; /* Expandir en altura */
+    }
+
+    /* Reducir altura de las tarjetas no seleccionadas */
+    .info-card:not(:hover) {
+        height: 200px; /* Reducir las otras tarjetas */
+    }
+
+    /* Asegurarse de que el contenido se mantenga centrado */
+    .card-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+}
+
+
+.hidden {
+    opacity: 0;
+    transform: translateY(20px); /* Movimiento desde abajo */
+    transition: opacity 1s ease, transform 1s ease;
+}
+
+
+footer {
+    background-color: #070a1a;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    /*border-top: 1px solid rgba(255, 255, 255, 0.1);*/
+}
+
+/* Estilos generales del footer */
+.prefootercontainer {
+    background-color: #070a1a;
+    color: #fff;
+    padding: 20px;
+    margin-top: 30px; /* Ajusta este valor a lo que desees */
+}
+
+.prefootercontainer .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.prefootercontainer p {
+    color: #ffffffb3;
+}
+
+.prefootercontainer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.prefootercontainer ul li a {
+    color: #ffffffb3;
+    text-decoration: none;
+}
+
+.prefootercontainer ul li a:hover {
+    color: #fff;
+}
+/* Alineación a la izquierda de los elementos de la lista */
+.col-lg-3 ul {
+    text-align: left;
+    padding-left: 0; /* Elimina cualquier padding predeterminado en la lista */
+}
+
+.col-lg-3 ul li {
+    margin-bottom: 10px; /* Espaciado entre los elementos */
+}
+
+.col-lg-3 ul li a {
+    color: rgba(255, 255, 255, 0.8); /* Ajusta la transparencia si es necesario */
+    text-decoration: none; /* Quita el subrayado si es necesario */
+}
+
+.col-lg-3 ul li a:hover {
+    color: #ffffff; /* Color en hover */
+}
+/* Alinear el título a la izquierda */
+.col-lg-3 h5 {
+    text-align: left; /* Alinear el texto a la izquierda */
+}
+
+/* Personalizar la lista para mostrar puntos */
+.col-lg-3 ul {
+    padding-left: 20px; /* Espacio a la izquierda para las viñetas */
+}
+
+/* Estilo para los elementos de la lista */
+.col-lg-3 ul li {
+    margin-bottom: 10px; /* Espacio entre los elementos de la lista */
+    list-style-type: disc; /* Establecer viñetas de tipo disc */
+}
+
+/* Asegurar que los enlaces sean de color blanco */
+.col-lg-3 ul li a {
+    color: rgba(255, 255, 255, 0.8); /* Ajustar el color de los enlaces */
+    text-decoration: none; /* Quitar el subrayado */
+}
+
+.col-lg-3 ul li a:hover {
+    color: #ffffff; /* Color en hover */
+}
+
+/* Asegúrate de que los botones sean cuadrados y centrados */
+.btn-square {
+    width: 40px; /* Ajusta el tamaño del botón según sea necesario */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px; /* Tamaño del icono */
+    border-radius: 5px;
+    padding: 0;
+}
+
+/* Opcional: puedes ajustar el tamaño del icono si es necesario */
+.btn i {
+    margin: 0;
+    font-size: 18px;
+}
+
+.subfooter {
+    display: flex;
+    justify-content: space-between; /* Alinea los elementos a izquierda y derecha */
+    align-items: center;
+    padding: 5px 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.subfooter p {
+    margin: 0;
+    color: #ffffffb3; /* Para que el texto sea algo translúcido */
+}
+
+.text-md-left {
+    text-align: left;
+}
+
+.text-md-right {
+    text-align: right;
+}
+
+#logo-footer {
+    height: 70px; /* Ajusta la altura de la imagen */
+    width: auto;  /* Mantiene las proporciones de la imagen */
+    margin-left: 5px; /* Agrega un pequeño margen para separar la imagen del texto */
+    vertical-align: middle; /* Alinea verticalmente la imagen con el texto */
+}
+
+@media (max-width: 768px) {
+    .prefootercontainer .row {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .subfooter {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+/* Estilos para el botón de volver al inicio */
+#backToTopBtn {
+    position: fixed;
+    bottom: 20px; /* Espaciado desde la parte inferior */
+    right: 30px; /* Espaciado desde la derecha */
+    z-index: 99; /* Asegúrate de que el botón esté por encima de otros elementos */
+    background-color: transparent; /* Fondo transparente */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cambia el cursor al pasar por el botón */
+    padding: 0; /* Sin espacio interno */
+    width: 50px; /* Ancho fijo para hacer el botón más cuadrado */
+    height: 50px; /* Alto fijo para hacer el botón más cuadrado */
+    opacity: 0; /* Opacidad inicial */
+    transition: opacity 0.5s ease; /* Transición de opacidad */
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Comienza 20px abajo */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Termina en la posición original */
+    }
+}
+
+/* Animación de salida */
+@keyframes fadeOutDown {
+    0% {
+        opacity: 1;
+        transform: translateY(0); /* Comienza en la posición original */
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(20px); /* Termina 20px abajo */
+    }
+}
+
+/* Cambiar el color de fondo y agregar una escala al pasar el cursor */
+#backToTopBtn:hover {
+    transform: scale(1.1); /* Aumentar ligeramente el tamaño al pasar el cursor */
+}
+
+/* Ajustar la imagen dentro del botón */
+#backToTopBtn img {
+    width: 80%; /* Ajustar la imagen al tamaño del botón */
+    height: auto; /* Mantener la proporción */
+}
+
+/* Clase para mostrar el botón */
+.show {
+    opacity: 1; /* Hacerlo completamente visible */
+    animation: fadeInUp 0.5s ease forwards; /* Añadir la animación de entrada */
+}
+
+/* Clase para ocultar el botón */
+.hide {
+    opacity: 0; /* Hacerlo completamente invisible */
+    animation: fadeOutDown 0.5s ease forwards; /* Añadir la animación de salida */
+    visibility: hidden; /* Asegurar que no ocupe espacio */
+}
+
+
+
+/*css del login
+/* Imagen de fondo */
+#background-image {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Tamaño de pantalla completo para ocupar toda el área visible */
+    overflow: hidden;
+}
+
+#background-image img {
+    width: 100%;
+    height: 100%; /* Cubrir toda el área del contenedor */
+    object-fit: cover;
+    opacity: 0.3; /* Opacidad para lograr el efecto tenue */
+}
+
+/* Contenedor del login */
+#login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute; /* Posiciona el login centrado en la sección de fondo */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Caja del login con fondo borroso y degradado */
+.login-container {
+    width: 30%;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #fff;
+}
+/* Estilos para el botón */
+button {
+    width: 50%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #007bff, #013c7c); /* Degradado en el botón */
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+}
+
+button:hover {
+    background: linear-gradient(135deg, #0056b3, #003f7f); /* Cambia el degradado al pasar el ratón */
+    transform: scale(1.05); /* Efecto de zoom en hover */
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos para los campos de entrada */
+input[type="email"],
+input[type="password"] {
+    width: 300px;
+    height: 40px;
+    padding: 12px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 30px; /* Borde redondeado */
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra sutil */
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.3); /* Fondo ligeramente más claro al enfocar */
+    outline: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3); /* Aumenta la sombra al enfocar */
+    border: 1px solid #00aaff; /* Resalta el borde al enfocarse */
+}
+
+/* Efecto placeholder */
+input::placeholder {
+    color: #ddd;
+    font-style: italic;
+}
+/*css del login fin
+
+
+/*css del registro
+/* Contenedor de registro */
+#register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+/* Caja de registro con altura fija y scrollbar */
+.register-container {
+    width: 50%;
+    max-height: 500px; /* Altura fija */
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: #fff;
+    overflow-y: auto; /* Activa el scrollbar vertical */
+}
+
+/* Estilo de scrollbar */
+.register-container::-webkit-scrollbar {
+    width: 8px; /* Ancho del scrollbar */
+}
+
+.register-container::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3); /* Color transparente del thumb */
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Borde claro */
+}
+
+.register-container::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); /* Color tenue del fondo del scrollbar */
+    border-radius: 4px;
+}
+
+/* Estilo de los campos de entrada en el formulario de registro */
+#register input[type="text"],
+#register input[type="email"],
+#register input[type="number"],
+#register input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 20px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+#register input[type="text"]:focus,
+#register input[type="email"]:focus,
+#register input[type="number"]:focus,
+#register input[type="password"]:focus {
+    background: rgba(255, 255, 255, 0.3);
+    outline: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #00aaff;
+}
+
+#register input::placeholder {
+    color: #ddd;
+    font-style: italic;
+}
+
+#register p {
+    color: #ddd;
+    font-size: 14px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+/*css del registro fin*/
+
+
+
+/* NUEVOS ESTILOS PARA LA PÁGINA DE PERFIL */
+/* Contenedor principal del perfil */
+.profile-container {
+    min-height: 100vh;
+    background-color: #070a1a;
+    padding: 50px 20px;
+    color: #fff;
+    margin-top: 20px; /* Espacio para el header fijo */
+}
+
+/* Tarjeta principal del perfil */
+.profile-card {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Sección superior del perfil */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Contenedor de la imagen de perfil */
+.profile-image {
+    position: relative;
+    width: 150px;
+    height: 150px;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #00aaff;
+}
+
+/* Botón de editar foto */
+.edit-photo-btn {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: #00aaff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.edit-photo-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Información básica del perfil */
+.profile-info {
+    flex: 1;
+}
+
+.profile-info h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    color: #fbff95;
+}
+
+.profile-info .user-details {
+    display: flex;
+    gap: 20px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.user-details span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-details i {
+    color: #00aaff;
+}
+
+/* Sección de contenido del perfil */
+.profile-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+/* Tarjetas de información */
+.info-section {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    transition: transform 0.3s ease;
+}
+
+.info-section:hover {
+    transform: translateY(-5px);
+}
+
+.info-section h2 {
+    color: #00aaff;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-section h2 i {
+    font-size: 0.9em;
+}
+
+/* Lista de información */
+.info-list {
+    list-style: none;
+}
+
+.info-list li {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+/* Botones de acción */
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.action-btn {
+    padding: 12px 25px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.primary-btn {
+    background: linear-gradient(135deg, #00aaff, #0077cc);
+    color: white;
+}
+
+.secondary-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estado activo para los dispositivos */
+.status-active {
+    color: #4CAF50;
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-info .user-details {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .action-btn {
+        justify-content: center;
+    }
+
+    .info-section {
+        margin-bottom: 20px;
+    }
+
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+}
+/*fin del css perfil*/ 
+
+
+
+
+
+/*Estilos para la pagina de gestion de usuarios*/
+
+
+
+/* Tabla */
+/* Estilo para la tabla */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Encabezados de la tabla */
+table th {
+    background-color: #264653;
+    color: #fff;
+    padding: 15px;
+    text-align: left;
+    font-size: 1rem;
+}
+
+/* Filas de la tabla */
+table td {
+    padding: 15px;
+    text-align: left;
+    color: #333;
+    font-size: 0.9rem;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Filas alternas */
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #e9ecef; /* Color al pasar el mouse */
+}
+
+
+/* Alertas */
+.alert {
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.alert-error {
+    background-color: #fce4e4;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+}
+/*Estilos para la pagina de gestion de usuarios fin*/
+
+
+/*Estilos para la pagina de nticias*/
+/* Estilo para hacer que toda la fila sea clickeable excepto los iconos de acción */
+.clickable-row {
+    cursor: pointer;
+}
+.clickable-row:hover {
+    background-color: #f0f0f0;
+}
+/* Elimina el estilo de subrayado de enlaces en la fila */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+/* Evita que los enlaces de acción activen el evento onclick en la fila */
+.action-link {
+    cursor: auto;
+    color: #000;
+}
+/*Estilos para la pagina de nticias*/
+
+
+.noticia-container {
+    background-color: #f8f9fab4; /* Fondo claro */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+}
+
+.noticia-container .texto p {
+    font-size: 1.2em; /* Aumentar el tamaño de la fuente */
+    line-height: 1.6; /* Mejorar la legibilidad */
+    color: #333; /* Texto oscuro */
+}
+
+.noticia-container .imagen img {
+    max-height: 400px; /* Limitar la altura máxima de la imagen */
+    object-fit: cover; /* Ajustar la imagen */
+}
+
+.noticia-container p.text-muted {
+    font-style: italic; /* Texto en cursiva para el mensaje de falta de imagen */
+    color: #6c757d; /* Texto en gris */
+}
