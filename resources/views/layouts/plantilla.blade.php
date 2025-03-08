@@ -14,23 +14,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
     <title>@yield('title')</title>
-    <link rel="icon" href="../src/img/Minilogo.png" type="image/x-icon">
+    <link rel="icon" href="../img/Minilogo.png" type="image/x-icon">
 </head>
 <body data-bs-spy="scroll" data-bs-target=".divisiones" data-bs-offset="70">
     <header id="main-header">
         <section id="logo">
-            <a href="../public/index.html">
-                <img id="logo-img" src="../src/img/LogoSmartwallsAnimado.gif" alt="SmartWalls Logo">
-            </a>
+        <a href="{{ route('home') }}">
+    <img id="logo-img" src="{{ asset('img/LogoSmartwallsAnimado.gif') }}" alt="SmartWalls Logo">
+</a>
         </section>
     
         <!-- Menú de navegación -->
         <div class="divisiones">
-            <a href="#" class="nav-item nav-link active">Inicio</a>
+            <a href="{{ route('home') }}" class="nav-item nav-link active">Inicio</a>
             <a href="#acerca_de" class="nav-item nav-link">Acerca de</a>
             <a href="#servicios" class="nav-item nav-link">Servicios</a>
             <a href="../src/noticias2.php" class="nav-item nav-link">Noticias</a>
-            <a href="#listo" class="nav-item nav-link">Entrar</a>
+            <a href="{{ route('login') }}" class="nav-item nav-link">Entrar</a>
+
         </div>
     
         <!-- Botón de menú de hamburguesa -->
@@ -47,7 +48,7 @@
                 <div class="row pt-5">
                     <!-- Columna 1: SmartWalls y descripción -->
                     <div class="col-lg-3 col-md-6 mb-5 text-md-left">
-                            <img id="logo-img" src="../src/img/LogoSmartwallsAnimado.gif" alt="SmartWalls Logo">
+                            <img id="logo-img" src="../img/LogoSmartwallsAnimado.gif" alt="SmartWalls Logo">
                         <p>SmartWalls, el control de tu hogar en la palma de tu mano.</p>
                     </div>
                     
@@ -96,7 +97,7 @@
                 <div class="col-lg-6 text-center text-md-right">
                     <p class="m-0 text-white-50">
                         Designed by CODE OPS
-                        <img id="logo-footer" src="../src/img/LogoCodeOpsanimadosinbucle.gif" alt="CODE OPS Logo">
+                        <img id="logo-footer" src="../img/LogoCodeOpsanimadosinbucle.gif" alt="CODE OPS Logo">
                     </p>
                 </div>
             </div>
@@ -105,10 +106,10 @@
     <!-- Botón de volver al inicio -->
      
     <div id="backToTopBtn" title="Volver al inicio">
-        <img src="../src/img/flecha-hacia-arriba.png" alt="Volver al inicio" />
+        <img src="../img/flecha-hacia-arriba.png" alt="Volver al inicio" />
     </div>
     </section>
-    <script src="../src/js/script.js"></script>
+    <script src="../js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
