@@ -57,18 +57,19 @@ class AuthController extends Controller
             'correo' => 'required|string|email|max:255',
             'contrasena' => 'required|string|min:6',
         ]);
-
+    
+        // Si falla la validación, redirigir al formulario con los errores
         if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 400);
+            return back()->withErrors($validator)->withInput();  // Redirige de vuelta al formulario con los errores
         }
-
+    
         // Buscar el usuario por correo
         $usuario = Prueba::where('correo', $request->correo)->first();
-
+    
         if (!$usuario) {
-            return response()->json(['error' => 'Correo no encontrado'], 404);
+            return back()->with('error', 'Correo no encontrado')->withInput();  // Mensaje de error y mantiene la entrada
         }
-
+    
         // Verificar si la contraseña es correcta
         if (Hash::check($request->contrasena, $usuario->contrasena)) {
             // Guardar los datos en sesión
@@ -83,12 +84,13 @@ class AuthController extends Controller
                     'tipousuario' => $usuario->tipousuario,
                 ]
             ]);
-
+    
             return redirect('/'); // Redirigir a la vista de bienvenida
         }
-
-        return response()->json(['error' => 'Contraseña incorrecta'], 401);
+    
+        return back()->with('error', 'Contraseña incorrecta')->withInput();  // Mensaje de error y mantiene la entrada
     }
+
 
     public function showRegister()
     {

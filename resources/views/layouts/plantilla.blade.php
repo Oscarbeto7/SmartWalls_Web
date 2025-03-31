@@ -15,6 +15,13 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
     <title>@yield('title')</title>
     <link rel="icon" href="../img/Minilogo.png" type="image/x-icon">
+
+    <!-- Agregar jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Agregar Bootstrap JS y Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
 </head>
 <body data-bs-spy="scroll" data-bs-target=".divisiones" data-bs-offset="70">
     <header id="main-header">
