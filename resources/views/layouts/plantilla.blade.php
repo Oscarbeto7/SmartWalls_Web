@@ -29,8 +29,22 @@
             <a href="{{ route('home') }}" class="nav-item nav-link active">Inicio</a>
             <a href="#acerca_de" class="nav-item nav-link">Acerca de</a>
             <a href="#servicios" class="nav-item nav-link">Servicios</a>
-            <a href="../src/noticias2.php" class="nav-item nav-link">Noticias</a>
-            <a href="{{ route('login') }}" class="nav-item nav-link">Entrar</a>
+            <a href="{{ route('noticias') }}" class="nav-item nav-link">Noticias</a>
+            @if(session()->has('usuario'))
+ 
+            <a href="{{ route('perfil') }}" class="nav-item nav-link">{{ session('usuario')['nombre'] }}</a>
+
+    <a href="{{ url('logout') }}" class="nav-item nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        Cerrar sesión
+    </a>
+    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+@else
+    <a href="{{ route('login') }}" class="nav-item nav-link">
+        Empezar
+    </a>
+@endif
 
         </div>
     

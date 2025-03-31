@@ -1,23 +1,24 @@
 @extends('layouts.plantilla')
+
 @section('title', 'SmartWalls')
+
 @section('content')
 <section id="main-content">
-<section id="contenedor">
-            <section id="hero-image" >
-                <img src="../img/ImagenCasa1.png" alt="Remodelaciones" style="width: 100%; height: auto;">
-                <div class="text-container">
-                    <h1 class="main-title animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">Remodelaciones y</h1>
-                    <h1 class="main-title animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">renovaciones</h1>
-                    <h1 class="main-title animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">domésticas</h1>
-                    <h3 class="sub-title animate__animated animate__fadeInUp" style="animation-delay: 1s;">Usa nuestra app para controlar tus paredes y tu casa</h3>
-                    <a href="#acerca_de2">
-                        <button id="btn-more-info" class="animate__animated animate__fadeInUp" style="animation-delay: 1.2s;" title="Mas informacion">Ubicanos</button>
-                    </a>
-                    
-                </div>
-            </section>
-            
-            <section id="acerca_de" class="hidden" style="animation-delay: 0.4s;">
+    <section id="contenedor">
+        <section id="hero-image">
+            <img src="{{ asset('img/ImagenCasa1.png') }}" alt="Remodelaciones" style="width: 100%; height: auto;">
+            <div class="text-container">
+                <h1 class="main-title animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">Remodelaciones y</h1>
+                <h1 class="main-title animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">renovaciones</h1>
+                <h1 class="main-title animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">domésticas</h1>
+                <h3 class="sub-title animate__animated animate__fadeInUp" style="animation-delay: 1s;">Usa nuestra app para controlar tus paredes y tu casa</h3>
+                <a href="#acerca_de2">
+                    <button id="btn-more-info" class="animate__animated animate__fadeInUp" style="animation-delay: 1.2s;" title="Mas informacion">Ubicanos</button>
+                </a>
+            </div>
+        </section>
+
+        <section id="acerca_de" class="hidden" style="animation-delay: 0.4s;">
                 <div class="container">
                     <div class="row">
                         <div class="col izquierda">
@@ -66,32 +67,33 @@
             
             
 
-            
-
-            <section id="listo">
-                <div class="container_listo">
-                    <div class="row">
-                        <!-- Parte izquierda: Imagen -->
-                        <div class="col izquierda animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
-                            <img src="../img/ImagenCasa3.jpeg" alt="Imagen sobre SmartWalls" />
-                            <!-- Capa oscura sobre la imagen -->
-                            <div class="text-container">
-                                <h2>¿Preparado?</h2>
-                            </div>
-                        </div>
-            
-                        <!-- Parte derecha: Texto y botón -->
-                        <div class="col derecha animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
-                            <h4>Si estas preparado para renovar tu hogar haz clic en el botón de "Empezar" y envíanos tu solicitud para poder contactarnos contigo y brindarte nuestros servicios.</h4>
-                            <a href="../src/login.html">
-                                <button class="hero-button">Empezar</button>
-                            </a>
+        <section id="listo">
+            <div class="container_listo">
+                <div class="row">
+                    <div class="col izquierda animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+                        <img src="{{ asset('img/ImagenCasa3.jpeg') }}" alt="Imagen sobre SmartWalls" />
+                        <div class="text-container">
+                            <h2>¿Preparado?</h2>
                         </div>
                     </div>
+                    <div class="col derecha animate__animated animate__fadeInUp" style="animation-delay: 0.8s;">
+                        @if(session()->has('usuario'))
+                        <h4>Bienvenido, {{ session('usuario')['nombre'] }}!</h4>
+                            <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                                @csrf
+                                <button class="hero-button" type="submit">Cerrar sesión</button>
+                            </form>
+                        @else
+                            <h4>Si estás preparado para renovar tu hogar, haz clic en el botón de "Empezar".</h4>
+                            <a href="{{ route('login') }}">
+                                <button class="hero-button">Empezar</button>
+                            </a>
+                        @endif
+                    </div>
                 </div>
-            </section>
-            
-            <section id="acerca_de2" class="hidden" style="animation-delay: 0.4s;">
+            </div>
+        </section>
+        <section id="acerca_de2" class="hidden" style="animation-delay: 0.4s;">
                 <div class="container">
                     <div class="row">
                         <!-- Parte izquierda: Texto -->
@@ -111,6 +113,7 @@
                         </div>
                     </div>
                 </div>
+        <!-- Resto de tu contenido permanece igual -->
     </section>
-@endsection()
-
+</section>
+@endsection

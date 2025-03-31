@@ -1,0 +1,37 @@
+{
+    "noticias": [
+      {
+        "encabezado": "SmartWalls revoluciona los espacios habitacionales con paredes móviles",
+        "resumen": "El proyecto SmartWalls implementa tecnología IoT para transformar los espacios, permitiendo la reconfiguración dinámica del entorno.",
+        "contenido": "El equipo de SmartWalls ha desarrollado un sistema que integra sensores, actuadores y una plataforma web y móvil para controlar paredes móviles. Gracias al protocolo TCP/IP, el sistema permite la comunicación confiable y en tiempo real, facilitando el monitoreo remoto. Esta innovación apunta a mejorar la flexibilidad de los espacios habitacionales, adaptándolos a las necesidades de los usuarios.",
+        "fecha": "2025-03-29",
+        "autor": "Jesús Aviña Alcala ",
+        "imagen": "img/ImagenSobrenosotros.jpeg"
+      },
+      {
+        "encabezado": "Avances en la octava semana del proyecto SmartWalls",
+        "resumen": "El equipo de SmartWalls presenta el progreso alcanzado en la semana 8, destacando la integración de la base de datos y el control de sensores.",
+        "contenido": "Durante la octava semana, el equipo logró conectar la base de datos MongoDB Atlas con la aplicación web desarrollada en Laravel. Además, se perfeccionó la comunicación con los sensores de temperatura y luz a través del ESP32, lo que permite un monitoreo más preciso del entorno. El equipo también optimizó la interfaz móvil, facilitando la configuración remota.",
+        "fecha": "2025-03-22",
+        "autor": "Oscar Alberto Serna Morán",
+        "imagen": "img/images.png"
+      },
+      {
+        "encabezado": "Integración de TCP/IP para un control más seguro y eficiente",
+        "resumen": "SmartWalls adopta el protocolo TCP/IP para garantizar una comunicación estable y segura entre la plataforma y los dispositivos IoT.",
+        "contenido": "El equipo ha optado por TCP/IP debido a su confiabilidad y escalabilidad. Este protocolo asegura que los datos de los sensores lleguen de forma precisa y en el orden correcto, evitando pérdidas de información. Además, la compatibilidad con redes IP permite que los usuarios controlen las paredes móviles desde cualquier parte del mundo, mejorando la accesibilidad del sistema.",
+        "fecha": "2025-03-15",
+        "autor": "Samuel Osuna Medina",
+        "imagen": "img/IP.jpg"
+      },
+      {
+        "encabezado": "SmartWalls implementa React Native para su aplicación móvil",
+        "resumen": "La aplicación móvil de SmartWalls, desarrollada en React Native, permitirá el control remoto e intuitivo del sistema.",
+        "contenido": "El equipo ha finalizado la primera versión de la aplicación móvil utilizando React Native y Expo, lo que garantiza compatibilidad con Android e iOS. Esta app permitirá a los usuarios ajustar la posición de las paredes, configurar la iluminación y monitorear la temperatura en tiempo real. La combinación con MongoDB Atlas asegura que los datos se sincronicen eficientemente.",
+        "fecha": "2025-03-10",
+        "autor": "Jimmy Aviña Gómez",
+        "imagen": "img/rea.png"
+      }
+    ]
+  }
+  

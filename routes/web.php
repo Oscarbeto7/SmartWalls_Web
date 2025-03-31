@@ -14,30 +14,53 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('login', function () {
-    return view('login'); // Aquí redirige a tu vista login.blade.php
-})->name('login'); // Se asegura de que esta sea la ruta correcta para login
-
-Route::post('login', [AuthController::class, 'login'])->name('login.submit'); // Acción POST para el login
-
-// Ruta para la página de inicio
+// Ruta para la página de inicio (home) - GET
 Route::get('/', function () {
     return view('home');
-})->name('home'); // Página de inicio después de login
+})->name('home');
 
-// Ruta para la página de registro
-Route::get('register', function () {
-    return view('auth.register'); // Redirige a la vista de registro
-})->name('register');
+Route::get('/noticias', [App\Http\Controllers\NoticiaController::class, 'index'])->name('noticias');
 
-// Si quieres redirigir al usuario a una página de inicio después de iniciar sesión, puedes usar esta ruta
-Route::post('login', [AuthController::class, 'login'])->middleware('auth')->name('login.submit');
 
-// Rutas de ejemplo que puedes eliminar si no las necesitas
-Route::get('iniciosesion', function(){
-    return "Inicia sesión:";
+// Rutas de prueba para MongoDB (esto puedes eliminarlas si no las necesitas)
+Route::get('/test-db', function () {
+    try {
+        $connection = DB::connection('mongodb');
+        $databases = $connection->getMongoClient()->listDatabases();
+        return response()->json($databases);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()]);
+    }
 });
 
-Route::get('iniciosesion/{registro}', function($registro){
-    return "Regístrate para el curso: $registro";
+Route::get('/test-insert', function () {
+    DB::connection('mongodb')->table('prueba')->insert([
+        'nombre' => 'Jesús',
+        'edad' => 25
+    ]);
+    return response()->json(['mensaje' => 'Documento insertado']);
 });
+
+// Rutas de registro (GET para mostrar formulario, POST para registrar)
+Route::get('register', [AuthController::class, 'showRegister'])->name('register');
+Route::post('register', [AuthController::class, 'register']);
+
+// Rutas de login (GET para mostrar formulario, POST para iniciar sesión)
+Route::get('login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
+
+Route::get('/bienvenida', function () {
+    if (!session()->has('usuario')) {
+        return redirect('/'); // Si no hay sesión, redirige al login
+    }
+    return view('bienvenida');
+});
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/noticias', [App\Http\Controllers\NoticiaController::class, 'index'])->name('noticias');
+Route::get('/noticias/{id}', [App\Http\Controllers\NoticiaController::class, 'show'])->name('noticias.show');
+Route::get('/perfil', [AuthController::class, 'mostrarPerfil'])->name('perfil');
+
+Route::get('/perfil/editar', [AuthController::class, 'editarPerfil'])->name('perfil.editar');
+Route::post('/perfil/editar', [AuthController::class, 'actualizarPerfil'])->name('perfil.actualizar');
+
