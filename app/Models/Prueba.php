@@ -10,6 +10,7 @@ class Prueba extends Eloquent implements Authenticatable // Implementar la inter
     use AuthenticatableTrait; // Agregar el trait para autenticación
 
     protected $connection = 'mongodb';
+    protected $collection = 'usuarios';
 
     // Definir los campos que se pueden asignar masivamente
     protected $fillable = [

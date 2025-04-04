@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Prueba;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash; // Aquí se importa Hash
 use Illuminate\Support\Facades\Validator; // Aquí se importa Validator
@@ -21,75 +21,84 @@ class AuthController extends Controller
             'apellidoMaterno' => 'required|string|max:255',
             'telefonos' => 'required|array',
             'telefonos.*' => 'string',
-            'correo' => 'required|string|email|max:255|unique:users,correo',
+            'correo' => 'required|string|email|max:255',
             'edad' => 'required|integer|min:18',
             'contrasena' => 'required|string|min:6',
         ]);
-
+    
         if ($validator->fails()) {
             return redirect()->route('register')
                 ->withErrors($validator)
                 ->withInput();
         }
-
+    
+        // Verificar si el correo ya existe
+        $existeCorreo = Usuario::where('correo', $request->correo)->first();
+        if ($existeCorreo) {
+            return redirect()->route('register')
+                ->withErrors(['correo' => 'Este correo electrónico ya está registrado.'])
+                ->withInput();
+        }
+    
         // Crear el registro con la estructura deseada
-        $prueba = Prueba::create([
-            'nombrecompleto' => json_decode(json_encode([
+        $prueba = Usuario::create([
+          // En AuthController.register() y UserController.store(), usa el mismo formato:
+            'nombrecompleto' => [
                 'nombre' => $request->nombre,
                 'apellidoPaterno' => $request->apellidoPaterno,
                 'apellidoMaterno' => $request->apellidoMaterno,
-            ])),
+            ],
             'telefonos' => $request->telefonos,
             'correo' => $request->correo,
-            'edad' => $request->edad,
+            'edad' => (int)$request->edad,
             'contrasena' => Hash::make($request->contrasena),
             'tipousuario' => 'usuario',
         ]);
-
+    
         // Redirigir al login después de un registro exitoso
         return redirect()->route('login')->with('success', 'Registro exitoso');
     }
 
     public function login(Request $request)
-    {
-        // Validar los datos de entrada
-        $validator = Validator::make($request->all(), [
-            'correo' => 'required|string|email|max:255',
-            'contrasena' => 'required|string|min:6',
-        ]);
-    
-        // Si falla la validación, redirigir al formulario con los errores
-        if ($validator->fails()) {
-            return back()->withErrors($validator)->withInput();  // Redirige de vuelta al formulario con los errores
-        }
-    
-        // Buscar el usuario por correo
-        $usuario = Prueba::where('correo', $request->correo)->first();
-    
-        if (!$usuario) {
-            return back()->with('error', 'Correo no encontrado')->withInput();  // Mensaje de error y mantiene la entrada
-        }
-    
-        // Verificar si la contraseña es correcta
-        if (Hash::check($request->contrasena, $usuario->contrasena)) {
-            // Guardar los datos en sesión
-            session([
-                'usuario' => [
-                    'nombre' => $usuario->nombrecompleto['nombre'],
-                    'apellidoPaterno' => $usuario->nombrecompleto['apellidoPaterno'],
-                    'apellidoMaterno' => $usuario->nombrecompleto['apellidoMaterno'],
-                    'telefonos' => $usuario->telefonos,
-                    'correo' => $usuario->correo,
-                    'edad' => $usuario->edad,
-                    'tipousuario' => $usuario->tipousuario,
-                ]
-            ]);
-    
-            return redirect('/'); // Redirigir a la vista de bienvenida
-        }
-    
-        return back()->with('error', 'Contraseña incorrecta')->withInput();  // Mensaje de error y mantiene la entrada
+{
+    // Validar los datos de entrada
+    $validator = Validator::make($request->all(), [
+        'correo' => 'required|string|email|max:255',
+        'contrasena' => 'required|string|min:6',
+    ]);
+
+    // Si falla la validación, redirigir al formulario con los errores
+    if ($validator->fails()) {
+        return back()->withErrors($validator)->withInput();  // Redirige de vuelta al formulario con los errores
     }
+
+    // Buscar el usuario por correo
+    $usuario = Usuario::where('correo', $request->correo)->first();
+
+    if (!$usuario) {
+        return back()->with('error', 'Correo no encontrado')->withInput();  // Mensaje de error y mantiene la entrada
+    }
+
+    // Verificar si la contraseña es correcta
+    if (Hash::check($request->contrasena, $usuario->contrasena)) {
+        // Guardar los datos en sesión
+        session([
+            'usuario' => [
+                'nombre' => $usuario->nombrecompleto['nombre'],
+                'apellidoPaterno' => $usuario->nombrecompleto['apellidoPaterno'] ?? '',
+                'apellidoMaterno' => $usuario->nombrecompleto['apellidoMaterno'] ?? '',
+                'telefonos' => $usuario->telefonos,
+                'correo' => $usuario->correo,
+                'edad' => $usuario->edad,
+                'tipousuario' => $usuario->tipousuario,
+            ]
+        ]);
+
+        return redirect('/'); // Redirigir a la vista de bienvenida
+    }
+
+    return back()->with('error', 'Contraseña incorrecta')->withInput();  // Mensaje de error y mantiene la entrada
+}
 
 
     public function showRegister()
@@ -117,7 +126,7 @@ class AuthController extends Controller
         $correo = session('usuario')['correo'];
     
         // Obtener los datos del usuario desde la base de datos
-        $usuario = Prueba::where('correo', $correo)->first();
+        $usuario = Usuario::where('correo', $correo)->first();
     
         if (!$usuario) {
             return redirect()->route('login')->with('error', 'No se encontró la información del usuario.');
@@ -137,7 +146,7 @@ class AuthController extends Controller
         }
 
         $correo = session('usuario')['correo'];
-        $usuario = Prueba::where('correo', $correo)->first();
+        $usuario = Usuario::where('correo', $correo)->first();
 
         if (!$usuario) {
             return redirect()->route('login')->with('error', 'Usuario no encontrado.');
@@ -153,7 +162,7 @@ class AuthController extends Controller
         }
 
         $correo = session('usuario')['correo'];
-        $usuario = Prueba::where('correo', $correo)->first();
+        $usuario = Usuario::where('correo', $correo)->first();
 
         if (!$usuario) {
             return redirect()->route('login')->with('error', 'Usuario no encontrado.');
@@ -206,8 +215,8 @@ class AuthController extends Controller
         // Actualizar la sesión del usuario
         session()->put('usuario', [
             'nombre' => $request->nombre,
-            'apellidoPaterno' => $request->apellidoPaterno,
-            'apellidoMaterno' => $request->apellidoMaterno,
+            'apellidoP' => $request->apellidoPaterno,
+            'apellidoM' => $request->apellidoMaterno,
             'telefonos' => $request->telefonos,
             'correo' => $request->correo,
             'edad' => $request->edad,

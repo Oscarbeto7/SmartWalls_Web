@@ -10,7 +10,7 @@
                 <h1>{{ $usuario->nombrecompleto['nombre'] }} </h1>
                 <div class="user-details">
                     <span><i class="fas fa-envelope"></i> {{ $usuario->correo }}</span>
-                    <span><i class="fas fa-calendar"></i> Miembro desde {{ $usuario->created_at->format('Y') }}</span>
+                   
                 </div>
             </div>
         </div>
@@ -30,25 +30,6 @@
                 </ul>
             </div>
 
-            <div class="info-section">
-                <h2><i class="fas fa-home"></i> Mis Casas</h2>
-                @if ($casas->isEmpty())
-                    <p>No tienes casas registradas.</p>
-                @else
-                    <ul class="info-list">
-                        @foreach ($casas as $casa)
-                            <li>
-                                <span>Nombre</span>
-                                <span>{{ $casa['nombre_casa'] }}</span>
-                            </li>
-                            <li>
-                                <span>Dirección</span>
-                                <span>{{ $casa['domicilio'] ?? 'No disponible' }}</span>
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
-            </div>
 
             <!-- Botón para editar perfil -->
             <div>
@@ -57,9 +38,9 @@
                 </a>
                 <br>
                 <br>
-                <a href="#" class="btn btn-primary">
-                    <i class="fas fa-edit"></i> Graficas
-                </a>
+                <a href="/charts" class="btn btn-primary">
+    <i class="fas fa-chart-bar"></i> Gráficas
+</a>
             </div>
             
 

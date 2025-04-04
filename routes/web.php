@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,7 +36,7 @@ Route::get('/test-db', function () {
 });
 
 Route::get('/test-insert', function () {
-    DB::connection('mongodb')->table('prueba')->insert([
+    DB::connection('mongodb')->table('u')->insert([
         'nombre' => 'Jesús',
         'edad' => 25
     ]);
@@ -64,3 +66,18 @@ Route::get('/perfil', [AuthController::class, 'mostrarPerfil'])->name('perfil');
 Route::get('/perfil/editar', [AuthController::class, 'editarPerfil'])->name('perfil.editar');
 Route::post('/perfil/editar', [AuthController::class, 'actualizarPerfil'])->name('perfil.actualizar');
 
+//Crud//
+Route::get('/usuarios', [UserController::class, 'listar'])->name('usuarios.listar');
+
+Route::get('/usuarios/create', [UserController::class, 'create'])->name('usuarios.create');
+Route::post('/usuarios', [UserController::class, 'store'])->name('usuarios.store');
+Route::get('/usuarios/{id}/edit', [UserController::class, 'edit'])->name('usuarios.edit');
+Route::post('/usuarios/{id}', [UserController::class, 'update'])->name('usuarios.update');
+Route::post('/usuarios/{id}/eliminar', [UserController::class, 'destroy'])->name('usuarios.eliminar');
+
+Route::get('/charts', [ChartController::class, 'index']);
+
+Route::get('/chart', [ChartController::class, 'index']);
+
+
+Route::get('/debug-charts', [ChartController::class, 'debug'])->name('charts.debug');

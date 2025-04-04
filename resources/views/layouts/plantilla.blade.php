@@ -33,27 +33,27 @@
     
         <!-- Menú de navegación -->
         <div class="divisiones">
-            <a href="{{ route('home') }}" class="nav-item nav-link active">Inicio</a>
-            <a href="#acerca_de" class="nav-item nav-link">Acerca de</a>
-            <a href="#servicios" class="nav-item nav-link">Servicios</a>
-            <a href="{{ route('noticias') }}" class="nav-item nav-link">Noticias</a>
-            @if(session()->has('usuario'))
- 
-            <a href="{{ route('perfil') }}" class="nav-item nav-link">{{ session('usuario')['nombre'] }}</a>
-
-    <a href="{{ url('logout') }}" class="nav-item nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        Cerrar sesión
-    </a>
-    <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-        @csrf
-    </form>
-@else
-    <a href="{{ route('login') }}" class="nav-item nav-link">
-        Empezar
-    </a>
-@endif
-
-        </div>
+    <a href="{{ route('home') }}" class="nav-item nav-link active">Inicio</a>
+    <a href="#acerca_de" class="nav-item nav-link">Acerca de</a>
+    <a href="#servicios" class="nav-item nav-link">Servicios</a>
+    <a href="{{ route('noticias') }}" class="nav-item nav-link">Noticias</a>
+    @if(session()->has('usuario'))
+    @if(session('usuario')['tipousuario'] == 'administrador')
+            <a href="{{ route('usuarios.listar') }}" class="nav-item nav-link">Gestionar usuarios</a>
+        @endif
+        <a href="{{ route('perfil') }}" class="nav-item nav-link">{{ session('usuario')['nombre'] }}</a>
+        <a href="{{ url('logout') }}" class="nav-item nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            Cerrar sesión
+        </a>
+        <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+    @else
+        <a href="{{ route('login') }}" class="nav-item nav-link">
+            Empezar
+        </a>
+    @endif
+</div>
     
         <!-- Botón de menú de hamburguesa -->
         <div class="hamburger-menu" id="hamburger-menu">
